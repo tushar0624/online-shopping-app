@@ -31,9 +31,9 @@ app.listen(port, err => {
     console.log('Server is running on ' + port);
 });
 
-// app.use('/service-worker.js', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '..', 'build','service-worker.js'));
-// });
+app.get('/service-worker.js', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
+});
 
 app.post('/payment', (req, res) => {
     if (Object.keys(req.body).length > 1) {
