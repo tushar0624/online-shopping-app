@@ -17,19 +17,20 @@ class ErrorBoundary extends React.Component {
     static getDrivedStateFromError(err) {
         // process the error
         console.log(err);
-        return { hasErrored: true };
+        return { hasErrored: true, err };
     }
 
     componentDidCatch(err, info) {
-        console.log(err);
+        console.error('Error Boundary Caught:', err, info);
     }
 
     render(){
-        if (this.state.hasErrored) {
+        const { hasErrored, err } = this.state;
+        if (hasErrored) {
             return (
                 <ErrorImageOverlay>
                     <ErrorImageContainer imageUrl = 'https://i.imgur.com/yW2W9SC.png'/>
-                    <ErrorImageText>Sorry this page is broken</ErrorImageText>
+                    <ErrorImageText>{err === 'ChunkLoadError' ? 'This application has been updated, please refresh your browser to see the latest content.' : 'Sorry this page is broken'}</ErrorImageText>
                 </ErrorImageOverlay>
             );
         }
