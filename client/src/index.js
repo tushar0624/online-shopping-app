@@ -21,7 +21,4 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-console.log(`First URL: ${process.env.PUBLIC_URL}/service-worker.js`);
-console.log(`Second Url: ${process.env.PUBLIC_URL}/static/service-worker.js`);
-
 serviceWorker.register();
